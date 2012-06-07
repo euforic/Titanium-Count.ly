@@ -16,5 +16,5 @@ win.open();
 var countly = require('count.ly');
 Ti.API.info("module is => " + countly);
 
-countly.start('YOUR_APP_KEY','http://APPHOST.com');
+countly.start('APP_KEY','http://API_HOST.com');
 
