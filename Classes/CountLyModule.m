@@ -34,7 +34,6 @@
 	// you *must* call the superclass
 	[super startup];
 	NSLog(@"[INFO] %@ loaded",self);
-    [[Countly sharedInstance] start:@"8730c95c523b631b723d320472d3656c22e704f4"];
 }
 
 -(void)shutdown:(id)sender
@@ -87,11 +86,13 @@
 
 #pragma Public APIs
 
--(id)start:(id)args
+-(void)start:(id)args
 {
-    [[Countly sharedInstance] start:@"8730c95c523b631b723d320472d3656c22e704f4"];
+    NSString * apikey = [TiUtils stringValue:[args objectForKey:@"key"]];
+    NSString * apiHost = [TiUtils stringValue:[args objectForKey:@"host"]];
+
+    [[Countly sharedInstance] start:apikey forHost:apiHost];
 	// example method
-	return @"hello world";
 }
 
 -(id)exampleProp
