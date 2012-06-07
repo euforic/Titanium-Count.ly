@@ -22,10 +22,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		14D9241415809FA4000E9197 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D9240F15809FA4000E9197 /* Countly.h */; };
-		14D9241515809FA4000E9197 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D9241015809FA4000E9197 /* Countly.m */; };
-		14D9241615809FA4000E9197 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D9241115809FA4000E9197 /* Countly_OpenUDID.h */; };
-		14D9241715809FA4000E9197 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D9241215809FA4000E9197 /* Countly_OpenUDID.m */; };
+		1454F8DB15812579008C6852 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1454F8D615812579008C6852 /* Countly.h */; };
+		1454F8DC15812579008C6852 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454F8D715812579008C6852 /* Countly.m */; };
+		1454F8DD15812579008C6852 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1454F8D815812579008C6852 /* Countly_OpenUDID.h */; };
+		1454F8DE15812579008C6852 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454F8D915812579008C6852 /* Countly_OpenUDID.m */; };
 		14D9241915809FEE000E9197 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D9241815809FEE000E9197 /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		14D9241D1580A198000E9197 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D9241C1580A198000E9197 /* UIKit.framework */; };
 		24DD6CF91134B3F500162E58 /* CountLyModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* CountLyModule.h */; };
@@ -47,11 +47,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		14D9240F15809FA4000E9197 /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
-		14D9241015809FA4000E9197 /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
-		14D9241115809FA4000E9197 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
-		14D9241215809FA4000E9197 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
-		14D9241315809FA4000E9197 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		1454F8D615812579008C6852 /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
+		1454F8D715812579008C6852 /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
+		1454F8D815812579008C6852 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
+		1454F8D915812579008C6852 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
+		1454F8DA15812579008C6852 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		14D9241815809FEE000E9197 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		14D9241A1580A00D000E9197 /* module.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = module.xcconfig; sourceTree = "<group>"; };
 		14D9241B1580A01D000E9197 /* example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = example; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				14D9240D15809FA4000E9197 /* sdk */,
+				1454F8D415812579008C6852 /* sdk */,
 				24DE9E0F11C5FE74003F90F6 /* CountLyModuleAssets.h */,
 				24DE9E1011C5FE74003F90F6 /* CountLyModuleAssets.m */,
 				24DD6CF71134B3F500162E58 /* CountLyModule.h */,
@@ -122,17 +122,16 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		14D9240D15809FA4000E9197 /* sdk */ = {
+		1454F8D415812579008C6852 /* sdk */ = {
 			isa = PBXGroup;
 			children = (
-				14D9240F15809FA4000E9197 /* Countly.h */,
-				14D9241015809FA4000E9197 /* Countly.m */,
-				14D9241115809FA4000E9197 /* Countly_OpenUDID.h */,
-				14D9241215809FA4000E9197 /* Countly_OpenUDID.m */,
-				14D9241315809FA4000E9197 /* README.md */,
+				1454F8D615812579008C6852 /* Countly.h */,
+				1454F8D715812579008C6852 /* Countly.m */,
+				1454F8D815812579008C6852 /* Countly_OpenUDID.h */,
+				1454F8D915812579008C6852 /* Countly_OpenUDID.m */,
+				1454F8DA15812579008C6852 /* README.md */,
 			);
-			name = sdk;
-			path = "countly-sdk-ios";
+			path = sdk;
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -155,8 +154,8 @@
 				AA747D9F0F9514B9006C5449 /* CountLy_Prefix.pch in Headers */,
 				24DD6CF91134B3F500162E58 /* CountLyModule.h in Headers */,
 				24DE9E1111C5FE74003F90F6 /* CountLyModuleAssets.h in Headers */,
-				14D9241415809FA4000E9197 /* Countly.h in Headers */,
-				14D9241615809FA4000E9197 /* Countly_OpenUDID.h in Headers */,
+				1454F8DB15812579008C6852 /* Countly.h in Headers */,
+				1454F8DD15812579008C6852 /* Countly_OpenUDID.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +228,8 @@
 			files = (
 				24DD6CFA1134B3F500162E58 /* CountLyModule.m in Sources */,
 				24DE9E1211C5FE74003F90F6 /* CountLyModuleAssets.m in Sources */,
-				14D9241515809FA4000E9197 /* Countly.m in Sources */,
-				14D9241715809FA4000E9197 /* Countly_OpenUDID.m in Sources */,
+				1454F8DC15812579008C6852 /* Countly.m in Sources */,
+				1454F8DE15812579008C6852 /* Countly_OpenUDID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
