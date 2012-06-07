@@ -88,8 +88,9 @@
 
 -(void)start:(id)args
 {
-    NSString * apikey = [TiUtils stringValue:[args objectForKey:@"key"]];
-    NSString * apiHost = [TiUtils stringValue:[args objectForKey:@"host"]];
+	ENSURE_ARG_COUNT(args, 2);
+	NSString* apikey = [TiUtils stringValue:[args objectAtIndex:0]];
+	NSString* apiHost = [TiUtils stringValue:[args objectAtIndex:1]];
 
     [[Countly sharedInstance] start:apikey forHost:apiHost];
 	// example method
