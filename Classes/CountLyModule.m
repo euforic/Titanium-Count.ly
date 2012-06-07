@@ -94,15 +94,52 @@
     TiThreadPerformOnMainThread(^{[[Countly sharedInstance] start:apikey withHost:apiHost];}, NO);
 }
 
--(id)exampleProp
+-(id)udid
 {
-	// example property getter
-	return @"hello world";
+    NSString *udid = [DeviceInfo udid];
+	return udid;
 }
 
--(void)setExampleProp:(id)value
+-(id)device
 {
-	// example property setter
+    NSString *device = [DeviceInfo device];
+	return device;
+}
+
+-(id)osVersion
+{
+    NSString *osVersion = [DeviceInfo osVersion];
+	return osVersion;
+}
+
+-(id)carrier
+{
+    NSString *carrier = [DeviceInfo carrier];
+	return carrier;
+}
+
+-(id)resolution
+{
+    NSString *resolution = [DeviceInfo resolution];
+	return resolution;
+}
+
+-(id)locale
+{
+    NSString *locale = [DeviceInfo locale];
+	return locale;
+}
+
+-(id)platform
+{
+    NSString *platform = [DeviceInfo platform];
+	return platform;
+}
+
+-(id)metrics
+{
+    NSString *metrics = [DeviceInfo platform];
+	return metrics;
 }
 
 @end

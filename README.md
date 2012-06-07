@@ -15,6 +15,17 @@ Other Countly SDK repositories;
 ```
 var countly = require('count.ly');
 countly.start('APP_KEY','http://API_HOST.com');
+
+//Exposed Info from countly
+Ti.API.info(JSON.parse(countly.metrics));
+Ti.API.info(countly.udid);
+Ti.API.info(countly.device);
+Ti.API.info(countly.osVersion);
+Ti.API.info(countly.carrier);
+Ti.API.info(countly.resolution);
+Ti.API.info(countly.locale);
+Ti.API.info(countly.platform);
+Ti.API.info(countly.metrics);
 ```
 
 ## TODO

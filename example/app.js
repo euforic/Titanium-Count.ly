@@ -14,7 +14,15 @@ win.open();
 
 // TODO: write your module tests here
 var countly = require('count.ly');
-Ti.API.info("module is => " + countly);
 
-countly.start('APP_KEY','APP_HOST');
+countly.start('APP_KEY','http://API_HOST.com');
+label.text = JSON.parse(countly.metrics);
 
+Ti.API.info(countly.udid);
+Ti.API.info(countly.device);
+Ti.API.info(countly.osVersion);
+Ti.API.info(countly.carrier);
+Ti.API.info(countly.resolution);
+Ti.API.info(countly.locale);
+Ti.API.info(countly.platform);
+Ti.API.info(countly.metrics);

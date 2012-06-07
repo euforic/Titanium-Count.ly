@@ -23,11 +23,6 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-@interface DeviceInfo : NSObject
-{
-}
-@end
-
 @implementation DeviceInfo
 
 + (NSString *)udid
@@ -100,6 +95,29 @@
 
 	result = [result stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
+	return result;
+}
+
++ (NSString *)platform
+{	
+	NSString *result = @"{";
+	
+	result = [result stringByAppendingFormat:@"\"%@\":\"%@\"", @"device", [DeviceInfo device]];
+	
+	result = [result stringByAppendingFormat:@",\"%@\":\"%@\"", @"os", @"iOS"];
+	
+	result = [result stringByAppendingFormat:@",\"%@\":\"%@\"", @"os_version", [DeviceInfo osVersion]];	
+    
+	NSString *carrier = [DeviceInfo carrier];
+	if (carrier != nil)
+		result = [result stringByAppendingFormat:@",\"%@\":\"%@\"", @"carrier", carrier];
+    
+	result = [result stringByAppendingFormat:@",\"%@\":\"%@\"", @"resolution", [DeviceInfo resolution]];
+    
+	result = [result stringByAppendingFormat:@",\"%@\":\"%@\"", @"locale", [DeviceInfo locale]];
+	
+	result = [result stringByAppendingString:@"}"];
+        
 	return result;
 }
 
