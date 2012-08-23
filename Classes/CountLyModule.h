@@ -5,6 +5,7 @@
  * and licensed under the Apache Public License (version 2)
  */
 #import "TiModule.h"
+#import "Countly.h"
 
 @interface CountLyModule : TiModule 
 {

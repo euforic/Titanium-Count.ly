@@ -8,7 +8,59 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import "Countly.h"
+
+
+/// Tool to decoded urld encoded string that Count.ly uses to send metrics
+/// Utilities for encoding and decoding URL arguments.
+/// This code is from the project google-toolbox-for-mac
+@interface NSString (GTMNSStringURLArgumentsAdditions)
+
+/// Returns a string that is escaped properly to be a URL argument.
+//
+/// This differs from stringByAddingPercentEscapesUsingEncoding: in that it
+/// will escape all the reserved characters (per RFC 3986
+/// <http://www.ietf.org/rfc/rfc3986.txt>) which
+/// stringByAddingPercentEscapesUsingEncoding would leave.
+///
+/// This will also escape '%', so this should not be used on a string that has
+/// already been escaped unless double-escaping is the desired result.
+- (NSString*)gtm_stringByEscapingForURLArgument;
+
+/// Returns the unescaped version of a URL argument
+//
+/// This has the same behavior as stringByReplacingPercentEscapesUsingEncoding:,
+/// except that it will also convert '+' to space.
+- (NSString*)gtm_stringByUnescapingFromURLArgument;
+
+@end
+
+#define GTMNSMakeCollectable(cf) ((id)(cf))
+#define GTMCFAutorelease(cf) ([GTMNSMakeCollectable(cf) autorelease])
+
+@implementation NSString (GTMNSStringURLArgumentsAdditions)
+
+- (NSString*)gtm_stringByEscapingForURLArgument {
+	// Encode all the reserved characters, per RFC 3986
+	// (<http://www.ietf.org/rfc/rfc3986.txt>)
+	CFStringRef escaped =
+    CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                            (CFStringRef)self,
+                                            NULL,
+                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                            kCFStringEncodingUTF8);
+	return GTMCFAutorelease(escaped);
+}
+
+- (NSString*)gtm_stringByUnescapingFromURLArgument {
+	NSMutableString *resultString = [NSMutableString stringWithString:self];
+	[resultString replaceOccurrencesOfString:@"+"
+								  withString:@" "
+									 options:NSLiteralSearch
+									   range:NSMakeRange(0, [resultString length])];
+	return [resultString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+@end
 
 @implementation CountLyModule
 
@@ -41,12 +93,12 @@
 	// this method is called when the module is being unloaded
 	// typically this is during shutdown. make sure you don't do too
 	// much processing here or the app will be quit forceably
-	
+
 	// you *must* call the superclass
 	[super shutdown:sender];
 }
 
-#pragma mark Cleanup 
+#pragma mark Cleanup
 
 -(void)dealloc
 {
@@ -69,7 +121,7 @@
 {
 	if (count == 1 && [type isEqualToString:@"my_event"])
 	{
-		// the first (of potentially many) listener is being added 
+		// the first (of potentially many) listener is being added
 		// for event named 'my_event'
 	}
 }
@@ -94,31 +146,53 @@
     TiThreadPerformOnMainThread(^{[[Countly sharedInstance] start:apikey withHost:apiHost];}, NO);
 }
 
--(id)udid
+-(void)resume:(id)args
+{
+    [[Countly sharedInstance] resume];
+}
+
+-(void)suspend:(id)args
+{
+    [[Countly sharedInstance] suspend];
+
+}
+
+-(void)exit:(id)args
+{
+    [[Countly sharedInstance] exit];
+
+}
+
+-(NSNumber*)isSuspended
+{
+    return NUMBOOL([[Countly sharedInstance] isSuspended]);
+}
+
+-(NSString*)udid
 {
     NSString *udid = [DeviceInfo udid];
 	return udid;
 }
 
--(id)device
+-(NSString*)device
 {
     NSString *device = [DeviceInfo device];
 	return device;
 }
 
--(id)osVersion
+-(NSString*)osVersion
 {
     NSString *osVersion = [DeviceInfo osVersion];
 	return osVersion;
 }
 
--(id)carrier
+-(NSString*)carrier
 {
     NSString *carrier = [DeviceInfo carrier];
 	return carrier;
 }
 
--(id)resolution
+-(NSString*)resolution
 {
     NSString *resolution = [DeviceInfo resolution];
 	return resolution;
@@ -126,19 +200,13 @@
 
 -(id)locale
 {
-    NSString *locale = [DeviceInfo locale];
+    NSLocale *locale = [DeviceInfo locale];
 	return locale;
 }
 
--(id)platform
+-(NSString*)metrics
 {
-    NSString *platform = [DeviceInfo platform];
-	return platform;
-}
-
--(id)metrics
-{
-    NSString *metrics = [DeviceInfo platform];
+    NSString *metrics = [[DeviceInfo metrics] gtm_stringByUnescapingFromURLArgument];
 	return metrics;
 }
 

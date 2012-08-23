@@ -16,7 +16,12 @@ win.open();
 var countly = require('count.ly');
 
 countly.start('APP_KEY','http://API_HOST.com');
-label.text = JSON.parse(countly.metrics);
+var metrics = JSON.parse(countly.metrics);
+
+metrics.udid = countly.udid;
+metrics.carrier = countly.carrier || 'Simulator';
+metrics.isSuspended = countly.isSuspended;
+label.text = metrics;
 
 Ti.API.info(countly.udid);
 Ti.API.info(countly.device);
@@ -24,5 +29,4 @@ Ti.API.info(countly.osVersion);
 Ti.API.info(countly.carrier);
 Ti.API.info(countly.resolution);
 Ti.API.info(countly.locale);
-Ti.API.info(countly.platform);
 Ti.API.info(countly.metrics);
