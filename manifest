@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.2.0
+version: 0.2.1
 apiversion: 2
 description: Count.ly SDK Module
 author: Christian Sullivan <cs@euforic.co>
@@ -15,4 +15,4 @@ name: count.ly
 moduleid: count.ly
 guid: ad1ce2b6-9511-403b-b5de-50c40542c433
 platform: iphone
-minsdk: 2.1.1.GA
+minsdk: 2.1.1

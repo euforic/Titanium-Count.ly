@@ -15,12 +15,17 @@ win.open();
 // TODO: write your module tests here
 var countly = require('count.ly');
 
-console.log(countly.carrier);
-console.log(countly.osVersion);
-console.log(countly.appVersion);
-console.log(countly.resolution);
-console.log(countly.locale);
-console.log(countly.device);
+console.log('device',countly.device);
+console.log('deviceName',countly.deviceName);
+console.log('devicePlatform',countly.platform)
+console.log('multitaskingSupported',countly.multitaskingSupported);
+console.log('orientation', countly.orientation);
+console.log('osVersion', countly.osVersion);
+console.log('carrier', countly.carrier);
+console.log('resolution', countly.resolution);
+console.log('locale',countly.locale);
+console.log('appVersion',countly.appVersion);
+console.log('osVersion',countly.osVersion);
 
 countly.start('APP_KEY','http://API_HOST.com');
 

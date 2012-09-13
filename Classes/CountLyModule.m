@@ -10,61 +10,9 @@
 #import "TiUtils.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
-
+#include <UIKit/UIKit.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-
-/// Tool to decoded urld encoded string that Count.ly uses to send metrics
-/// Utilities for encoding and decoding URL arguments.
-/// This code is from the project google-toolbox-for-mac
-@interface NSString (GTMNSStringURLArgumentsAdditions)
-
-/// Returns a string that is escaped properly to be a URL argument.
-//
-/// This differs from stringByAddingPercentEscapesUsingEncoding: in that it
-/// will escape all the reserved characters (per RFC 3986
-/// <http://www.ietf.org/rfc/rfc3986.txt>) which
-/// stringByAddingPercentEscapesUsingEncoding would leave.
-///
-/// This will also escape '%', so this should not be used on a string that has
-/// already been escaped unless double-escaping is the desired result.
-- (NSString*)gtm_stringByEscapingForURLArgument;
-
-/// Returns the unescaped version of a URL argument
-//
-/// This has the same behavior as stringByReplacingPercentEscapesUsingEncoding:,
-/// except that it will also convert '+' to space.
-- (NSString*)gtm_stringByUnescapingFromURLArgument;
-
-@end
-
-#define GTMNSMakeCollectable(cf) ((id)(cf))
-#define GTMCFAutorelease(cf) ([GTMNSMakeCollectable(cf) autorelease])
-
-@implementation NSString (GTMNSStringURLArgumentsAdditions)
-
-- (NSString*)gtm_stringByEscapingForURLArgument {
-	// Encode all the reserved characters, per RFC 3986
-	// (<http://www.ietf.org/rfc/rfc3986.txt>)
-	CFStringRef escaped =
-    CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                            (CFStringRef)self,
-                                            NULL,
-                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                            kCFStringEncodingUTF8);
-	return GTMCFAutorelease(escaped);
-}
-
-- (NSString*)gtm_stringByUnescapingFromURLArgument {
-	NSMutableString *resultString = [NSMutableString stringWithString:self];
-	[resultString replaceOccurrencesOfString:@"+"
-								  withString:@" "
-									 options:NSLiteralSearch
-									   range:NSMakeRange(0, [resultString length])];
-	return [resultString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-@end
 
 @implementation CountLyModule
 
@@ -86,8 +34,6 @@
 
 -(void)startup
 {
-	// this method is called when the module is first loaded
-	// you *must* call the superclass
 	[super startup];
 	NSLog(@"[INFO] %@ loaded",self);
 }
@@ -117,27 +63,6 @@
 	// optionally release any resources that can be dynamically
 	// reloaded once memory is available - such as caches
 	[super didReceiveMemoryWarning:notification];
-}
-
-#pragma mark Listener Notifications
-
--(void)_listenerAdded:(NSString *)type count:(int)count
-{
-	if (count == 1 && [type isEqualToString:@"my_event"])
-	{
-		// the first (of potentially many) listener is being added
-		// for event named 'my_event'
-	}
-}
-
--(void)_listenerRemoved:(NSString *)type count:(int)count
-{
-	if (count == 0 && [type isEqualToString:@"my_event"])
-	{
-		// the last listener called for event named 'my_event' has
-		// been removed, we can optionally clean up any resources
-		// since no body is listening at this point for that event
-	}
 }
 
 #pragma Public APIs
@@ -202,9 +127,69 @@
     return platform;
 }
 
+- (id)deviceName
+{
+  return [[UIDevice currentDevice] name];
+}
+
+- (id)platform
+{
+  return [[UIDevice currentDevice] model];
+}
+
+- (id)multitaskingSupported
+{
+  return NUMBOOL([[UIDevice currentDevice] isMultitaskingSupported]);
+}
+
+- (id)orientation
+{
+  //Obtaining the current device orientation
+  UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+  
+  NSString* value = @"portrait";
+  
+  switch(orientation){
+    // Device oriented vertically, home button on the bottom
+    case UIDeviceOrientationPortrait:
+      value = @"PORTRAIT";
+      break;
+    // Device oriented vertically, home button on the bottom
+    case UIDeviceOrientationPortraitUpsideDown:
+      value = @"PORTRAIT_UPSIDE_DOWN";
+      break;
+    // Device oriented vertically, home button on the top
+    case UIDeviceOrientationLandscapeLeft:
+      value = @"LANDSCAPE_LEFT";
+      break;
+    // Device oriented horizontally, home button on the right
+    case UIDeviceOrientationLandscapeRight:
+      value = @"LANDSCAPE_RIGHT";
+      break;
+    // Device oriented flat, face up
+    case UIDeviceOrientationFaceUp:
+      value = @"FACE_UP";
+      break;
+    // Device oriented flat, face down
+    case UIDeviceOrientationFaceDown:
+      value = @"FACE_DOWN";
+      break;
+    default:
+      value = @"UNKNOWN";
+      break;
+  }
+
+  return value;
+}
+
 - (id)osVersion
 {
 	return [[UIDevice currentDevice] systemVersion];
+}
+
+- (id)systemName
+{
+  return [[UIDevice currentDevice] systemName];
 }
 
 - (id)carrier
@@ -213,7 +198,10 @@
 	{
 		CTTelephonyNetworkInfo *netinfo = [[[CTTelephonyNetworkInfo alloc] init] autorelease];
 		CTCarrier *carrier = [netinfo subscriberCellularProvider];
-		return [carrier carrierName];
+    if ([carrier carrierName]) {
+      return [carrier carrierName];
+    }
+		return @"Simulator";
 	}
 
 	return @"Unknown";
@@ -224,9 +212,8 @@
 	CGRect bounds = [[UIScreen mainScreen] bounds];
 	CGFloat scale = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.f;
 	CGSize res = CGSizeMake(bounds.size.width * scale, bounds.size.height * scale);
-	NSString *result = [NSString stringWithFormat:@"%gx%g", res.width, res.height];
-
-	return result;
+	return [TiUtils sizeToDictionary:res];
+  
 }
 
 - (id)locale
@@ -239,5 +226,9 @@
 	return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 }
 
+- (id)proximityState
+{
+  return NUMBOOL([[UIDevice currentDevice] proximityState]);
+}
 
 @end

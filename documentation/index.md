@@ -16,14 +16,14 @@ Clone git repo and move to Titanium Modules Folder
 ```
 $ git clone https://github.com/euforic/Ti-Count.ly.git
 $ cd Ti-Count.ly
-$ cp count.ly-iphone-0.2.0.zip /Library/Application Support/Titanium/
+$ cp count.ly-iphone-0.2.1.zip /Library/Application Support/Titanium/
 ```
 
 Register your module with your application by editing `tiapp.xml` and adding your module.
 
 ```
 <modules>
-  <module version="0.2.0">count.ly</module>
+  <module version="0.2.1">count.ly</module>
 </modules>
 ```
 
@@ -89,12 +89,17 @@ countly.event({
 ### Metrics Data
 
 ```
-Ti.API.info(countly.device);
-Ti.API.info(countly.osVersion);
-Ti.API.info(countly.carrier);
-Ti.API.info(countly.resolution);
-Ti.API.info(countly.locale);
-Ti.API.info(countly.appVersion);
+console.log('device',countly.device);
+console.log('deviceName',countly.deviceName);
+console.log('devicePlatform',countly.platform)
+console.log('multitaskingSupported',countly.multitaskingSupported);
+console.log('orientation', countly.orientation);
+console.log('osVersion', countly.osVersion);
+console.log('carrier', countly.carrier);
+console.log('resolution', countly.resolution);
+console.log('locale',countly.locale);
+console.log('appVersion',countly.appVersion);
+console.log('osVersion',countly.osVersion);
 ```
 
 ## License

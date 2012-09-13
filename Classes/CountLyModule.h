@@ -10,5 +10,4 @@
 @interface CountLyModule : TiModule 
 {
 }
-
 @end
