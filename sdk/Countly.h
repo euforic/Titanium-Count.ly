@@ -6,32 +6,29 @@
 // Please visit www.count.ly for more information.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+@class EventQueue;
 
 @interface Countly : NSObject {
 	double unsentSessionLength;
 	NSTimer *timer;
 	double lastTime;
 	BOOL isSuspended;
+    EventQueue *eventQueue;
 }
 
 + (Countly *)sharedInstance;
+
 - (void)start:(NSString *)appKey withHost:(NSString *)appHost;
-- (BOOL)isSuspended;
-- (void)resume;
-- (void)suspend;
-- (void)exit;
+
+- (void)recordEvent:(NSString *)key count:(int)count;
+
+- (void)recordEvent:(NSString *)key count:(int)count sum:(double)sum;
+
+- (void)recordEvent:(NSString *)key segmentation:(NSDictionary *)segmentation count:(int)count;
+
+- (void)recordEvent:(NSString *)key segmentation:(NSDictionary *)segmentation count:(int)count sum:(double)sum;
+
 @end
 
-@interface DeviceInfo : NSObject{
-}
-
-+ (NSString *)udid;
-+ (NSString *)device;
-+ (NSString *)osVersion;
-+ (NSString *)carrier;
-+ (NSString *)resolution;
-+ (NSLocale *)locale;
-+ (NSString *)appVersion;
-+ (NSString *)metrics;
-@end

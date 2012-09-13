@@ -10,40 +10,91 @@ Other Countly SDK repositories;
 
 - [Countly Android SDK (countly-sdk-android)](https://github.com/Countly/countly-sdk-android)
 
-# Install
+## Installation
 
+Clone git repo and move to Titanium Modules Folder
 ```
 $ git clone https://github.com/euforic/Ti-Count.ly.git
 $ cd Ti-Count.ly
-$ cp count.ly-iphone-0.1.1.zip /Library/Application Support/Titanium/
+$ cp count.ly-iphone-0.2.0.zip /Library/Application Support/Titanium/
 ```
+
 Register your module with your application by editing `tiapp.xml` and adding your module.
+
 ```
 <modules>
-  <module version="0.1.1">count.ly</module>
+  <module version="0.2.0">count.ly</module>
 </modules>
-```
-Require you module in whatever js file you plan to use it in
-```
-var my_module = require('count.ly');
 ```
 
 ## Usage
 
+### Start Count.ly
+
+**Start Tracking**
 ```
 var countly = require('count.ly');
 countly.start('APP_KEY','http://API_HOST.com');
+```
 
-//Exposed Info from countly
-Ti.API.info(JSON.parse(countly.metrics));
-Ti.API.info(countly.udid);
+### Record Events
+
+**Fields**
+
+- name : Name of the event to track
+  - _(example - Track clicks on the help button "clickedHelp" )_
+- count : Number to increment the event in the db
+  - _(example - User purchases item increment by 1 )_
+- sum : Sum of the event's action
+  - _(example - User purchased 3 items at $5 each the sum would be 15)_
+- segmentation : Increment Multiple values with in the event
+  - _(example - User updates 3 fields in there profile you could increment the profile changes {name:1,hometown:1,dob:1} )_
+
+**Simple Event**
+```
+countly.event({
+    name:'entered-store'
+  , count:1
+});
+```
+
+**Event With Sum**
+```
+countly.event({
+    name:'purchased-credits'
+  , count:3
+  , sum:18
+});
+```
+
+**Event with Segmentation**
+```
+countly.event({
+    name:'opened-chats'
+  , count:4
+  , segmentation:{dave:1, sue:1, tom:2 }
+});
+```
+
+**Event with Segmentation and Sum**
+```
+countly.event({
+    name:'purchase'
+  , count:5
+  , sum:100
+  , segmentation:{dogs:2, cats:1, mice:1, treats:1 }
+});
+```
+
+### Metrics Data
+
+```
 Ti.API.info(countly.device);
 Ti.API.info(countly.osVersion);
 Ti.API.info(countly.carrier);
 Ti.API.info(countly.resolution);
 Ti.API.info(countly.locale);
-Ti.API.info(countly.platform);
-Ti.API.info(countly.metrics);
+Ti.API.info(countly.appVersion);
 ```
 
 ## License

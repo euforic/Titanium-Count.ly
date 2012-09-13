@@ -8,7 +8,11 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 /// Tool to decoded urld encoded string that Count.ly uses to send metrics
 /// Utilities for encoding and decoding URL arguments.
@@ -146,68 +150,94 @@
     TiThreadPerformOnMainThread(^{[[Countly sharedInstance] start:apikey withHost:apiHost];}, NO);
 }
 
--(void)resume:(id)args
+
+- (void)event:(id)args
 {
-    [[Countly sharedInstance] resume];
+    NSDictionary * params = [args objectAtIndex:0];
+    int numberOfArgs = [params count];
+    NSString* event = [TiUtils stringValue:[params objectForKey:@"name"]];
+    int count = [TiUtils intValue:[params objectForKey:@"count"]];
+    double sum = [TiUtils doubleValue:[params objectForKey:@"sum"]];
+    NSDictionary* segmentation = [params objectForKey:@"segmentation"];
+
+    for (id key in params) {
+
+        NSLog(@"key: %@, value: %@", key, [params objectForKey:key]);
+
+    }
+
+    if([segmentation count]){
+
+        if(sum){
+
+            [[Countly sharedInstance]recordEvent:event segmentation:segmentation count:count sum:sum];
+
+        }else{
+
+            [[Countly sharedInstance]recordEvent:event segmentation:segmentation count:count];
+
+        }
+
+    }else if(sum){
+
+        [[Countly sharedInstance]recordEvent:event count:count sum:sum];
+
+
+    }else{
+
+        [[Countly sharedInstance]recordEvent:event count:count];
+
+    }
+
 }
 
--(void)suspend:(id)args
+- (id)device
 {
-    [[Countly sharedInstance] suspend];
-
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+    return platform;
 }
 
--(void)exit:(id)args
+- (id)osVersion
 {
-    [[Countly sharedInstance] exit];
-
+	return [[UIDevice currentDevice] systemVersion];
 }
 
--(NSNumber*)isSuspended
+- (id)carrier
 {
-    return NUMBOOL([[Countly sharedInstance] isSuspended]);
+	if (NSClassFromString(@"CTTelephonyNetworkInfo"))
+	{
+		CTTelephonyNetworkInfo *netinfo = [[[CTTelephonyNetworkInfo alloc] init] autorelease];
+		CTCarrier *carrier = [netinfo subscriberCellularProvider];
+		return [carrier carrierName];
+	}
+
+	return @"Unknown";
 }
 
--(NSString*)udid
+- (id)resolution
 {
-    NSString *udid = [DeviceInfo udid];
-	return udid;
+	CGRect bounds = [[UIScreen mainScreen] bounds];
+	CGFloat scale = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.f;
+	CGSize res = CGSizeMake(bounds.size.width * scale, bounds.size.height * scale);
+	NSString *result = [NSString stringWithFormat:@"%gx%g", res.width, res.height];
+
+	return result;
 }
 
--(NSString*)device
+- (id)locale
 {
-    NSString *device = [DeviceInfo device];
-	return device;
+	return [[NSLocale currentLocale] localeIdentifier];
 }
 
--(NSString*)osVersion
+- (id)appVersion
 {
-    NSString *osVersion = [DeviceInfo osVersion];
-	return osVersion;
+	return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 }
 
--(NSString*)carrier
-{
-    NSString *carrier = [DeviceInfo carrier];
-	return carrier;
-}
-
--(NSString*)resolution
-{
-    NSString *resolution = [DeviceInfo resolution];
-	return resolution;
-}
-
--(id)locale
-{
-    NSLocale *locale = [DeviceInfo locale];
-	return locale;
-}
-
--(NSString*)metrics
-{
-    NSString *metrics = [[DeviceInfo metrics] gtm_stringByUnescapingFromURLArgument];
-	return metrics;
-}
 
 @end
