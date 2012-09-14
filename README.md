@@ -9,6 +9,8 @@ Countly Server;
 Other Countly SDK repositories;
 
 - [Countly Android SDK (countly-sdk-android)](https://github.com/Countly/countly-sdk-android)
+- [Countly iOS SDK (countly-sdk-ios)](https://github.com/Countly/countly-sdk-ios)
+
 
 ## Installation
 
@@ -47,8 +49,8 @@ countly.start('APP_KEY','http://API_HOST.com');
   - _(example - User purchases item increment by 1 )_
 - sum : Sum of the event's action
   - _(example - User purchased 3 items at $5 each the sum would be 15)_
-- segmentation : Increment Multiple values with in the event
-  - _(example - User updates 3 fields in there profile you could increment the profile changes {name:1,hometown:1,dob:1} )_
+- segmentation : Categorization of the event
+  - _(example - User is from USA and uses an iPhone 4S so the segmentation will be {device:"iPhone 4S", country:"USA"} )_
 
 **Simple Event**
 ```
@@ -72,7 +74,7 @@ countly.event({
 countly.event({
     name:'opened-chats'
   , count:4
-  , segmentation:{dave:1, sue:1, tom:2 }
+  , segmentation:{device:"iPhone 4S", country:"USA"}
 });
 ```
 
@@ -82,7 +84,7 @@ countly.event({
     name:'purchase'
   , count:5
   , sum:100
-  , segmentation:{dogs:2, cats:1, mice:1, treats:1 }
+  , segmentation:{app_version:"1.0", item:"Sword"}
 });
 ```
 
