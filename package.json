@@ -1,0 +1,19 @@
+{
+  "name": "countly",
+  "repo": "tipm/countly",
+  "version": "0.2.1",
+  "author": "Christian Sullivan <cs@euforic.co>",
+  "license": "MIT",
+  "description": "Count.ly Analytics Tracking iOS",
+  "main": "count.ly-iphone-0.2.1.zip",
+  "keywords": ["analytics","count.ly"],
+  "dependencies": {
+  },
+  "development": {},
+  "guid": "xxxxxxx-xxxxxx-xxxxxx",
+  "minsdk": "2.0.0",
+  "packed": true,
+  "files": [
+    "count.ly-iphone-0.2.1.zip"
+  ]
+}
