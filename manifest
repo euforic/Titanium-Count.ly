@@ -2,17 +2,16 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.2.1
+version: 0.3.0
 apiversion: 2
-description: Count.ly SDK Module
-author: Christian Sullivan <cs@euforic.co>
+description: count.ly
+author: Christian Sullivan <cs@bodhi5.com>
 license: MIT
-copyright: Copyright (c) 2012 by Christian Sullivan
-
+copyright: Copyright (c) 2014 by Bodhi5, Inc.
 
 # these should not be edited
 name: count.ly
-moduleid: count.ly
-guid: ad1ce2b6-9511-403b-b5de-50c40542c433
+moduleid: com.bodhi5.countly
+guid: 70fbc4b0-8ae7-4579-bd7b-bfe533f9cdd0
 platform: iphone
-minsdk: 2.1.1
+minsdk: 3.2.2.GA

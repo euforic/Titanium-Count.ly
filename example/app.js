@@ -1,8 +1,3 @@
-// This is a test harness for your module
-// You should do something interesting in this harness
-// to test out the module and to provide instructions
-// to users on how to use it by example.
-
 
 // open a single window
 var win = Ti.UI.createWindow({
@@ -13,7 +8,7 @@ win.add(label);
 win.open();
 
 // TODO: write your module tests here
-var countly = require('count.ly');
+var countly = require('com.bodhi5.countly');
 
 console.log('device',countly.device);
 console.log('deviceName',countly.deviceName);
@@ -27,7 +22,7 @@ console.log('locale',countly.locale);
 console.log('appVersion',countly.appVersion);
 console.log('osVersion',countly.osVersion);
 
-countly.start('APP_KEY','http://API_HOST.com');
+countly.startOnCloud('3d6a8a81cd7932daa437564d6c7e05095c1d5d18');
 
 countly.event({
     name:'entered-store'
@@ -50,3 +45,4 @@ countly.event({
   , sum:100
   , segmentation:{dogs:2, cats:1, mice:1, treats:1 }
 });
+

@@ -1,10 +1,11 @@
 /**
- * Your Copyright Here
+ * count.ly
  *
- * Appcelerator Titanium is Copyright (c) 2009-2010 by Appcelerator, Inc.
- * and licensed under the Apache Public License (version 2)
+ * Created by Christian Sullivan
+ * Copyright (c) 2014 Your Company. All rights reserved.
  */
-#import "CountLyModule.h"
+
+#import "ComBodhi5CountlyModule.h"
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
@@ -14,27 +15,30 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-@implementation CountLyModule
+@implementation ComBodhi5CountlyModule
 
 #pragma mark Internal
 
 // this is generated for your module, please do not change it
 -(id)moduleGUID
 {
-	return @"ad1ce2b6-9511-403b-b5de-50c40542c433";
+	return @"70fbc4b0-8ae7-4579-bd7b-bfe533f9cdd0";
 }
 
 // this is generated for your module, please do not change it
 -(NSString*)moduleId
 {
-	return @"count.ly";
+	return @"com.bodhi5.countly";
 }
 
 #pragma mark Lifecycle
 
 -(void)startup
 {
+	// this method is called when the module is first loaded
+	// you *must* call the superclass
 	[super startup];
+
 	NSLog(@"[INFO] %@ loaded",self);
 }
 
@@ -75,45 +79,51 @@
     TiThreadPerformOnMainThread(^{[[Countly sharedInstance] start:apikey withHost:apiHost];}, NO);
 }
 
+-(void)startOnCloud:(id)args
+{
+	ENSURE_ARG_COUNT(args, 1);
+	NSString* apikey = [TiUtils stringValue:[args objectAtIndex:0]];
+    TiThreadPerformOnMainThread(^{[[Countly sharedInstance] startOnCloudWithAppKey:apikey];}, NO);
+}
 
 - (void)event:(id)args
 {
     NSDictionary * params = [args objectAtIndex:0];
-    int numberOfArgs = [params count];
+    long numberOfArgs = [params count];
     NSString* event = [TiUtils stringValue:[params objectForKey:@"name"]];
     int count = [TiUtils intValue:[params objectForKey:@"count"]];
     double sum = [TiUtils doubleValue:[params objectForKey:@"sum"]];
     NSDictionary* segmentation = [params objectForKey:@"segmentation"];
-
+    
     for (id key in params) {
-
+        
         NSLog(@"key: %@, value: %@", key, [params objectForKey:key]);
-
+        
     }
-
+    
     if([segmentation count]){
-
+        
         if(sum){
-
+            
             [[Countly sharedInstance]recordEvent:event segmentation:segmentation count:count sum:sum];
-
+            
         }else{
-
+            
             [[Countly sharedInstance]recordEvent:event segmentation:segmentation count:count];
-
+            
         }
-
+        
     }else if(sum){
-
+        
         [[Countly sharedInstance]recordEvent:event count:count sum:sum];
-
-
+        
+        
     }else{
-
+        
         [[Countly sharedInstance]recordEvent:event count:count];
-
+        
     }
-
+    
 }
 
 - (id)device
@@ -129,57 +139,57 @@
 
 - (id)deviceName
 {
-  return [[UIDevice currentDevice] name];
+    return [[UIDevice currentDevice] name];
 }
 
 - (id)platform
 {
-  return [[UIDevice currentDevice] model];
+    return [[UIDevice currentDevice] model];
 }
 
 - (id)multitaskingSupported
 {
-  return NUMBOOL([[UIDevice currentDevice] isMultitaskingSupported]);
+    return NUMBOOL([[UIDevice currentDevice] isMultitaskingSupported]);
 }
 
 - (id)orientation
 {
-  //Obtaining the current device orientation
-  UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-  
-  NSString* value = @"portrait";
-  
-  switch(orientation){
-    // Device oriented vertically, home button on the bottom
-    case UIDeviceOrientationPortrait:
-      value = @"PORTRAIT";
-      break;
-    // Device oriented vertically, home button on the bottom
-    case UIDeviceOrientationPortraitUpsideDown:
-      value = @"PORTRAIT_UPSIDE_DOWN";
-      break;
-    // Device oriented vertically, home button on the top
-    case UIDeviceOrientationLandscapeLeft:
-      value = @"LANDSCAPE_LEFT";
-      break;
-    // Device oriented horizontally, home button on the right
-    case UIDeviceOrientationLandscapeRight:
-      value = @"LANDSCAPE_RIGHT";
-      break;
-    // Device oriented flat, face up
-    case UIDeviceOrientationFaceUp:
-      value = @"FACE_UP";
-      break;
-    // Device oriented flat, face down
-    case UIDeviceOrientationFaceDown:
-      value = @"FACE_DOWN";
-      break;
-    default:
-      value = @"UNKNOWN";
-      break;
-  }
-
-  return value;
+    //Obtaining the current device orientation
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    NSString* value = @"portrait";
+    
+    switch(orientation){
+            // Device oriented vertically, home button on the bottom
+        case UIDeviceOrientationPortrait:
+            value = @"PORTRAIT";
+            break;
+            // Device oriented vertically, home button on the bottom
+        case UIDeviceOrientationPortraitUpsideDown:
+            value = @"PORTRAIT_UPSIDE_DOWN";
+            break;
+            // Device oriented vertically, home button on the top
+        case UIDeviceOrientationLandscapeLeft:
+            value = @"LANDSCAPE_LEFT";
+            break;
+            // Device oriented horizontally, home button on the right
+        case UIDeviceOrientationLandscapeRight:
+            value = @"LANDSCAPE_RIGHT";
+            break;
+            // Device oriented flat, face up
+        case UIDeviceOrientationFaceUp:
+            value = @"FACE_UP";
+            break;
+            // Device oriented flat, face down
+        case UIDeviceOrientationFaceDown:
+            value = @"FACE_DOWN";
+            break;
+        default:
+            value = @"UNKNOWN";
+            break;
+    }
+    
+    return value;
 }
 
 - (id)osVersion
@@ -189,7 +199,7 @@
 
 - (id)systemName
 {
-  return [[UIDevice currentDevice] systemName];
+    return [[UIDevice currentDevice] systemName];
 }
 
 - (id)carrier
@@ -198,12 +208,12 @@
 	{
 		CTTelephonyNetworkInfo *netinfo = [[[CTTelephonyNetworkInfo alloc] init] autorelease];
 		CTCarrier *carrier = [netinfo subscriberCellularProvider];
-    if ([carrier carrierName]) {
-      return [carrier carrierName];
-    }
+        if ([carrier carrierName]) {
+            return [carrier carrierName];
+        }
 		return @"Simulator";
 	}
-
+    
 	return @"Unknown";
 }
 
@@ -213,7 +223,7 @@
 	CGFloat scale = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.f;
 	CGSize res = CGSizeMake(bounds.size.width * scale, bounds.size.height * scale);
 	return [TiUtils sizeToDictionary:res];
-  
+    
 }
 
 - (id)locale
@@ -228,7 +238,7 @@
 
 - (id)proximityState
 {
-  return NUMBOOL([[UIDevice currentDevice] proximityState]);
+    return NUMBOOL([[UIDevice currentDevice] proximityState]);
 }
 
 @end
