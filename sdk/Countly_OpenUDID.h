@@ -10,16 +10,16 @@
 //
 
 /*
- !!! IMPORTANT !!!
- 
- IF YOU ARE GOING TO INTEGRATE OpenUDID INSIDE A (STATIC) LIBRARY,
- PLEASE MAKE SURE YOU REFACTOR THE OpenUDID CLASS WITH A PREFIX OF YOUR OWN,
- E.G. ACME_OpenUDID. THIS WILL AVOID CONFUSION BY DEVELOPERS WHO ARE ALSO
- USING OpenUDID IN THEIR OWN CODE.
- 
- !!! IMPORTANT !!!
- 
- */
+    !!! IMPORTANT !!!
+
+    IF YOU ARE GOING TO INTEGRATE OpenUDID INSIDE A (STATIC) LIBRARY,
+    PLEASE MAKE SURE YOU REFACTOR THE OpenUDID CLASS WITH A PREFIX OF YOUR OWN,
+    E.G. ACME_OpenUDID. THIS WILL AVOID CONFUSION BY DEVELOPERS WHO ARE ALSO
+    USING OpenUDID IN THEIR OWN CODE. 
+
+    !!! IMPORTANT !!!
+
+*/
 
 /*
  http://en.wikipedia.org/wiki/Zlib_License
@@ -42,7 +42,7 @@
  
  3. This notice may not be removed or altered from any source
  distribution.
- */
+*/
 
 #import <Foundation/Foundation.h>
 
