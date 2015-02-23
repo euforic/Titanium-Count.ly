@@ -73,7 +73,6 @@ def compile_js(manifest,config):
     if not os.path.exists(js_file):
             js_file = os.path.join(cwd,'..','assets','count.ly.js')
     if not os.path.exists(js_file): return
-        
     from compiler import Compiler
     try:
             import json
@@ -154,14 +153,14 @@ def zip_dir(zf,dir,basepath,ignore=[],includeJSFiles=False):
         for name in ignoreDirs:
             if name in dirs:
                 dirs.remove(name)	# don't visit ignored directories
-                for file in files:
-                    if file in ignoreFiles: continue
-                    e = os.path.splitext(file)
-                    if len(e) == 2 and e[1] == '.pyc': continue
-                    if not includeJSFiles and len(e) == 2 and e[1] == '.js': continue
-                    from_ = os.path.join(root, file)
-                    to_ = from_.replace(dir, basepath, 1)
-                    zf.write(from_, to_)
+        for file in files:
+            if file in ignoreFiles: continue
+            e = os.path.splitext(file)
+            if len(e) == 2 and e[1] == '.pyc': continue
+            if not includeJSFiles and len(e) == 2 and e[1] == '.js': continue
+            from_ = os.path.join(root, file)
+            to_ = from_.replace(dir, basepath, 1)
+            zf.write(from_, to_)
 
 def glob_libfiles():
     files = []
@@ -207,47 +206,47 @@ def verify_build_arch(manifest, config):
             die('please update manifest to match module binary architectures.')
 
 def package_module(manifest,mf,config):
-        name = manifest['name'].lower()
-        moduleid = manifest['moduleid'].lower()
-        version = manifest['version']
-        modulezip = '%s-iphone-%s.zip' % (moduleid,version)
-        if os.path.exists(modulezip): os.remove(modulezip)
-        zf = zipfile.ZipFile(modulezip, 'w', zipfile.ZIP_DEFLATED)
-        modulepath = 'modules/iphone/%s/%s' % (moduleid,version)
-        zf.write(mf,'%s/manifest' % modulepath)
-        libname = 'lib%s.a' % moduleid
-        zf.write('build/%s' % libname, '%s/%s' % (modulepath,libname))
-        docs = generate_doc(config)
-        if docs!=None:
-            for doc in docs:
-                for file, html in doc.iteritems():
-                    filename = string.replace(file,'.md','.html')
-                    zf.writestr('%s/documentation/%s'%(modulepath,filename),html)
-    
-        p = os.path.join(cwd, 'assets')
+    name = manifest['name'].lower()
+    moduleid = manifest['moduleid'].lower()
+    version = manifest['version']
+    modulezip = '%s-iphone-%s.zip' % (moduleid,version)
+    if os.path.exists(modulezip): os.remove(modulezip)
+    zf = zipfile.ZipFile(modulezip, 'w', zipfile.ZIP_DEFLATED)
+    modulepath = 'modules/iphone/%s/%s' % (moduleid,version)
+    zf.write(mf,'%s/manifest' % modulepath)
+    libname = 'lib%s.a' % moduleid
+    zf.write('build/%s' % libname, '%s/%s' % (modulepath,libname))
+    docs = generate_doc(config)
+    if docs!=None:
+        for doc in docs:
+            for file, html in doc.iteritems():
+                filename = string.replace(file,'.md','.html')
+                zf.writestr('%s/documentation/%s'%(modulepath,filename),html)
+                    
+    p = os.path.join(cwd, 'assets')
+    if not os.path.exists(p):
+        p = os.path.join(cwd, '..', 'assets')
+    if os.path.exists(p):
+        zip_dir(zf,p,'%s/%s' % (modulepath,'assets'),['README'])
+        
+    for dn in ('example','platform'):
+        p = os.path.join(cwd, dn)
         if not os.path.exists(p):
-            p = os.path.join(cwd, '..', 'assets')
+                p = os.path.join(cwd, '..', dn)
         if os.path.exists(p):
-            zip_dir(zf,p,'%s/%s' % (modulepath,'assets'),['README'])
-        
-        for dn in ('example','platform'):
-            p = os.path.join(cwd, dn)
-            if not os.path.exists(p):
-                    p = os.path.join(cwd, '..', dn)
-            if os.path.exists(p):
-                    zip_dir(zf,p,'%s/%s' % (modulepath,dn),['README'],True)
+            zip_dir(zf,p,'%s/%s' % (modulepath,dn),['README'],True)
 
-        license_file = os.path.join(cwd,'LICENSE')
-        if not os.path.exists(license_file):
-            license_file = os.path.join(cwd,'..','LICENSE')
-        if os.path.exists(license_file):
-            zf.write(license_file,'%s/LICENSE' % modulepath)
+    license_file = os.path.join(cwd,'LICENSE')
+    if not os.path.exists(license_file):
+        license_file = os.path.join(cwd,'..','LICENSE')
+    if os.path.exists(license_file):
+        zf.write(license_file,'%s/LICENSE' % modulepath)
         
-        zf.write('module.xcconfig','%s/module.xcconfig' % modulepath)
-        exports_file = 'metadata.json'
-        if os.path.exists(exports_file):
-            zf.write(exports_file, '%s/%s' % (modulepath, exports_file))
-        zf.close()
+    zf.write('module.xcconfig','%s/module.xcconfig' % modulepath)
+    exports_file = 'metadata.json'
+    if os.path.exists(exports_file):
+        zf.write(exports_file, '%s/%s' % (modulepath, exports_file))
+    zf.close()
 
 
 if __name__ == '__main__':

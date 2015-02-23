@@ -22,17 +22,21 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1454F8DB15812579008C6852 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1454F8D615812579008C6852 /* Countly.h */; };
-		1454F8DC15812579008C6852 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454F8D715812579008C6852 /* Countly.m */; };
-		1454F8DD15812579008C6852 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1454F8D815812579008C6852 /* Countly_OpenUDID.h */; };
-		1454F8DE15812579008C6852 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454F8D915812579008C6852 /* Countly_OpenUDID.m */; };
 		14D9241915809FEE000E9197 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D9241815809FEE000E9197 /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		14D9241D1580A198000E9197 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D9241C1580A198000E9197 /* UIKit.framework */; };
-		24DD6CF91134B3F500162E58 /* CountLyModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* CountLyModule.h */; };
-		24DD6CFA1134B3F500162E58 /* CountLyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* CountLyModule.m */; };
-		24DE9E1111C5FE74003F90F6 /* CountLyModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* CountLyModuleAssets.h */; };
-		24DE9E1211C5FE74003F90F6 /* CountLyModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* CountLyModuleAssets.m */; };
-		AA747D9F0F9514B9006C5449 /* CountLy_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* CountLy_Prefix.pch */; };
+		A8A50BF41A97252F000373B3 /* CountLy_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* CountLy_Prefix.pch */; };
+		A8A50BF51A972533000373B3 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = A8A50BE61A9724C7000373B3 /* Countly.h */; };
+		A8A50BF61A972535000373B3 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = A8A50BE81A9724C7000373B3 /* Countly_OpenUDID.h */; };
+		A8A50BF71A972537000373B3 /* CountlyDB.h in Headers */ = {isa = PBXBuildFile; fileRef = A8A50BEA1A9724C7000373B3 /* CountlyDB.h */; };
+		A8A50BF81A972539000373B3 /* CountLyModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* CountLyModule.h */; };
+		A8A50BF91A97253A000373B3 /* CountLyModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* CountLyModuleAssets.h */; };
+		A8A50BFA1A97254A000373B3 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A50BE71A9724C7000373B3 /* Countly.m */; };
+		A8A50BFB1A97254C000373B3 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A50BE91A9724C7000373B3 /* Countly_OpenUDID.m */; };
+		A8A50BFC1A97254D000373B3 /* CountlyDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A50BEB1A9724C7000373B3 /* CountlyDB.m */; };
+		A8A50BFE1A972552000373B3 /* CountLyModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* CountLyModuleAssets.m */; };
+		A8A50BFF1A972553000373B3 /* CountLyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* CountLyModule.m */; };
+		A8A50C011A9725BD000373B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A50C001A9725BD000373B3 /* CoreData.framework */; };
+		A8EBB8601A9740AF00E3B161 /* Countly.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8EBB85E1A9740AF00E3B161 /* Countly.xcdatamodeld */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,20 +51,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1454F8D615812579008C6852 /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
-		1454F8D715812579008C6852 /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
-		1454F8D815812579008C6852 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
-		1454F8D915812579008C6852 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
-		1454F8DA15812579008C6852 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		14D9241815809FEE000E9197 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		14D9241A1580A00D000E9197 /* module.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = module.xcconfig; sourceTree = "<group>"; };
-		14D9241B1580A01D000E9197 /* example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = example; sourceTree = "<group>"; };
 		14D9241C1580A198000E9197 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24DD6CF71134B3F500162E58 /* CountLyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountLyModule.h; path = Classes/CountLyModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* CountLyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountLyModule.m; path = Classes/CountLyModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* CountLyModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountLyModuleAssets.h; path = Classes/CountLyModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* CountLyModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountLyModuleAssets.m; path = Classes/CountLyModuleAssets.m; sourceTree = "<group>"; };
+		A8A50BE61A9724C7000373B3 /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
+		A8A50BE71A9724C7000373B3 /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
+		A8A50BE81A9724C7000373B3 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
+		A8A50BE91A9724C7000373B3 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
+		A8A50BEA1A9724C7000373B3 /* CountlyDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyDB.h; sourceTree = "<group>"; };
+		A8A50BEB1A9724C7000373B3 /* CountlyDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyDB.m; sourceTree = "<group>"; };
+		A8A50C001A9725BD000373B3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A8A50C0F1A972C8D000373B3 /* Countly.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countly.podspec; sourceTree = "<group>"; };
+		A8EBB85F1A9740AF00E3B161 /* Countly.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Countly.xcdatamodel; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* CountLy_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountLy_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libCountLy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCountLy.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A50C011A9725BD000373B3 /* CoreData.framework in Frameworks */,
 				14D9241915809FEE000E9197 /* CoreTelephony.framework in Frameworks */,
 				14D9241D1580A198000E9197 /* UIKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
@@ -91,7 +99,6 @@
 		0867D691FE84028FC02AAC07 /* count.ly */ = {
 			isa = PBXGroup;
 			children = (
-				14D9241B1580A01D000E9197 /* example */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -103,6 +110,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8A50C001A9725BD000373B3 /* CoreData.framework */,
 				14D9241C1580A198000E9197 /* UIKit.framework */,
 				14D9241815809FEE000E9197 /* CoreTelephony.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
@@ -113,25 +121,13 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1454F8D415812579008C6852 /* sdk */,
+				A8A50BE51A9724C7000373B3 /* sdk */,
 				24DE9E0F11C5FE74003F90F6 /* CountLyModuleAssets.h */,
 				24DE9E1011C5FE74003F90F6 /* CountLyModuleAssets.m */,
 				24DD6CF71134B3F500162E58 /* CountLyModule.h */,
 				24DD6CF81134B3F500162E58 /* CountLyModule.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		1454F8D415812579008C6852 /* sdk */ = {
-			isa = PBXGroup;
-			children = (
-				1454F8D615812579008C6852 /* Countly.h */,
-				1454F8D715812579008C6852 /* Countly.m */,
-				1454F8D815812579008C6852 /* Countly_OpenUDID.h */,
-				1454F8D915812579008C6852 /* Countly_OpenUDID.m */,
-				1454F8DA15812579008C6852 /* README.md */,
-			);
-			path = sdk;
 			sourceTree = "<group>";
 		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
@@ -144,6 +140,21 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		A8A50BE51A9724C7000373B3 /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				A8EBB85E1A9740AF00E3B161 /* Countly.xcdatamodeld */,
+				A8A50C0F1A972C8D000373B3 /* Countly.podspec */,
+				A8A50BE61A9724C7000373B3 /* Countly.h */,
+				A8A50BE71A9724C7000373B3 /* Countly.m */,
+				A8A50BE81A9724C7000373B3 /* Countly_OpenUDID.h */,
+				A8A50BE91A9724C7000373B3 /* Countly_OpenUDID.m */,
+				A8A50BEA1A9724C7000373B3 /* CountlyDB.h */,
+				A8A50BEB1A9724C7000373B3 /* CountlyDB.m */,
+			);
+			path = sdk;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -151,11 +162,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA747D9F0F9514B9006C5449 /* CountLy_Prefix.pch in Headers */,
-				24DD6CF91134B3F500162E58 /* CountLyModule.h in Headers */,
-				24DE9E1111C5FE74003F90F6 /* CountLyModuleAssets.h in Headers */,
-				1454F8DB15812579008C6852 /* Countly.h in Headers */,
-				1454F8DD15812579008C6852 /* Countly_OpenUDID.h in Headers */,
+				A8A50BF51A972533000373B3 /* Countly.h in Headers */,
+				A8A50BF81A972539000373B3 /* CountLyModule.h in Headers */,
+				A8A50BF91A97253A000373B3 /* CountLyModuleAssets.h in Headers */,
+				A8A50BF71A972537000373B3 /* CountlyDB.h in Headers */,
+				A8A50BF61A972535000373B3 /* Countly_OpenUDID.h in Headers */,
+				A8A50BF41A97252F000373B3 /* CountLy_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,10 +241,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DD6CFA1134B3F500162E58 /* CountLyModule.m in Sources */,
-				24DE9E1211C5FE74003F90F6 /* CountLyModuleAssets.m in Sources */,
-				1454F8DC15812579008C6852 /* Countly.m in Sources */,
-				1454F8DE15812579008C6852 /* Countly_OpenUDID.m in Sources */,
+				A8EBB8601A9740AF00E3B161 /* Countly.xcdatamodeld in Sources */,
+				A8A50BFA1A97254A000373B3 /* Countly.m in Sources */,
+				A8A50BFF1A972553000373B3 /* CountLyModule.m in Sources */,
+				A8A50BFB1A97254C000373B3 /* Countly_OpenUDID.m in Sources */,
+				A8A50BFE1A972552000373B3 /* CountLyModuleAssets.m in Sources */,
+				A8A50BFC1A97254D000373B3 /* CountlyDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +477,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A8EBB85E1A9740AF00E3B161 /* Countly.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A8EBB85F1A9740AF00E3B161 /* Countly.xcdatamodel */,
+			);
+			currentVersion = A8EBB85F1A9740AF00E3B161 /* Countly.xcdatamodel */;
+			path = Countly.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }
