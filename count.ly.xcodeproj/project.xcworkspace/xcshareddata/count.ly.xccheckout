@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4F714294-12FA-499A-90CF-AC12074C8A81</string>
+	<key>IDESourceControlProjectName</key>
+	<string>count.ly</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5B61968FAFB515C92120BF95FE46873B997A0AEC</key>
+		<string>https://github.com/dieskim/Titanium-Count.ly.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>count.ly.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5B61968FAFB515C92120BF95FE46873B997A0AEC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dieskim/Titanium-Count.ly.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5B61968FAFB515C92120BF95FE46873B997A0AEC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5B61968FAFB515C92120BF95FE46873B997A0AEC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Titanium-Count.ly</string>
+		</dict>
+	</array>
+</dict>
+</plist>

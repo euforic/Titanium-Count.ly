@@ -75,11 +75,17 @@
     TiThreadPerformOnMainThread(^{[[Countly sharedInstance] start:apikey withHost:apiHost];}, NO);
 }
 
+-(void)startOnCloud:(id)args
+{
+    ENSURE_ARG_COUNT(args, 1);
+    NSString* apikey = [TiUtils stringValue:[args objectAtIndex:0]];
+    TiThreadPerformOnMainThread(^{[[Countly sharedInstance] startOnCloudWithAppKey:apikey];}, NO);
+}
 
 - (void)event:(id)args
 {
     NSDictionary * params = [args objectAtIndex:0];
-    int numberOfArgs = [params count];
+    long numberOfArgs = [params count];
     NSString* event = [TiUtils stringValue:[params objectForKey:@"name"]];
     int count = [TiUtils intValue:[params objectForKey:@"count"]];
     double sum = [TiUtils doubleValue:[params objectForKey:@"sum"]];
