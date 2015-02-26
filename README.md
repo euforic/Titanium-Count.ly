@@ -18,14 +18,14 @@ Clone git repo and move to Titanium Modules Folder
 ```
 $ git clone https://github.com/euforic/Ti-Count.ly.git
 $ cd Ti-Count.ly
-$ cp count.ly-iphone-0.2.1.zip /Library/Application Support/Titanium/
+$ cp count.ly-iphone-0.3.1.zip /Library/Application Support/Titanium/
 ```
 
 Register your module with your application by editing `tiapp.xml` and adding your module.
 
 ```
 <modules>
-  <module version="0.2.1">count.ly</module>
+  <module version="0.3.1">count.ly</module>
 </modules>
 ```
 
@@ -108,7 +108,7 @@ console.log('osVersion',countly.osVersion);
 
 (The MIT License)
 
-Copyright (c) 2012 Christian Sullivan &lt;cs@euforic.co&gt;
+Copyright (c) 2015 Christian Sullivan &lt;cs@bodhi5.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
