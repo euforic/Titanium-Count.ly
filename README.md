@@ -41,51 +41,98 @@ countly.start('APP_KEY','http://API_HOST.com');
 
 ### Record Events
 
-**Fields**
+**Set any of the following Fields in an Object**
 
-- name : Name of the event to track
-  - _(example - Track clicks on the help button "clickedHelp" )_
-- count : Number to increment the event in the db
-  - _(example - User purchases item increment by 1 )_
-- sum : Sum of the event's action
-  - _(example - User purchased 3 items at $5 each the sum would be 15)_
+```
+var segmentation = {device:"iPhone 4S", country:"USA"};
+var eventData = {name: "keySegmentationCountSum", segmentation:segmentation, count: 1, sum: 0.99};
+
+```
+
+- name (required) : Name of the event to track  
+- _(example - Track clicks on the help button "clickedHelp" )_
+- count (required) : Number to increment the event in the db
+- _(example - User purchases item increment by 1 )_
+- sum : If the event is tied to an overall numerical data, such as a purchase, we can use sum to keep track of that
+- _(example - 0.99)_
 - segmentation : Categorization of the event
-  - _(example - User is from USA and uses an iPhone 4S so the segmentation will be {device:"iPhone 4S", country:"USA"} )_
+- _(example - User is from USA and uses an iPhone 4S so the segmentation will be {device:"iPhone 4S", country:"USA"} )_
 
-**Simple Event**
-```
-countly.event({
-    name:'entered-store'
-  , count:1
-});
-```
+**Track Events Examples**
 
-**Event With Sum**
 ```
-countly.event({
-    name:'purchased-credits'
-  , count:3
-  , sum:18
-});
-```
+var segmentation = {device:"iPhone 4S", country:"USA"};
 
-**Event with Segmentation**
-```
-countly.event({
-    name:'opened-chats'
-  , count:4
-  , segmentation:{device:"iPhone 4S", country:"USA"}
-});
+Ti.API.log("Send keyCount Event");
+var eventData = {name: "keyCount", count: 1};
+Countly.event(eventData);
+
+Ti.API.log("Send keyCountSum Event");
+var eventData = {name: "keyCountSum", count: 1, sum: 0.99};
+Countly.event(eventData);
+
+Ti.API.log("Send keySegmentationCount Event");
+var eventData = {name: "keySegmentationCount", segmentation:segmentation, count: 1};
+Countly.event(eventData);
+
+Ti.API.log("Send keySegmentationCountSum Event");
+var eventData = {name: "keySegmentationCountSum", segmentation:segmentation, count: 1, sum: 0.99};
+Countly.event(eventData);
+
 ```
 
-**Event with Segmentation and Sum**
+### Set UserData
+
+**Set any of the following Fields in an Object**
+
+**Set userData{} as information about user
+**Possible keys are:
+
+- name - (String) providing user's full name
+- username - (String) providing user's nickname
+- email - (String) providing user's email address
+- organization - (String) providing user's organization's name where user works
+- phone - (String) providing user's phone number
+- picture - (String) providing WWW URL to user's avatar or profile picture
+- picturePath - (String) providing local path to user's avatar or profile picture
+- gender - (String) providing user's gender as M for male and F for female
+- byear - (int) providing user's year of birth as integer
+
 ```
-countly.event({
-    name:'purchase'
-  , count:5
-  , sum:100
-  , segmentation:{app_version:"1.0", item:"Sword"}
-});
+var userData = {	name: "testName",
+username: "testUsername",
+email: "testemail@gmail.com",
+organization: "testOrg",
+phone: "testPhone",
+picture: "https://count.ly/wp-content/uploads/2014/10/logo.png",
+picturePath: "/images/appicon.png",
+gender: "M",
+byear: "1980",
+};
+
+```
+
+**Set customUserData{} as information about user with custom properties
+**In customUserData you can provide any string key values to be stored with user
+
+```
+var customUserData = {	key1: "value1",
+key2:"value2",
+};
+```
+
+**Set Userdata as set in userData and customData
+**Can contain both userData and customData - or just userdata
+
+```
+Ti.API.log("Set UserData");
+var args = {	userData:userData,
+customUserData:customUserData,
+};
+
+
+Countly.userData(args);
+
 ```
 
 ### Metrics Data
