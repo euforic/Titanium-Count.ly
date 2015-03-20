@@ -122,6 +122,81 @@
 
 }
 
+- (void)userData:(id)args
+{
+    
+    //  All keys are optional:
+    //  kCLYUserName - (String) User's full name
+    //  kCLYUserUsername - (String) User's nickname
+    //  kCLYUserEmail - (String) User's email address
+    //  kCLYUserOrganization - (String) User's organization
+    //  kCLYUserPhone - (String) User's phone number with country code
+    //  kCLYUserPicture - (String) WWW URL to User's avatar or profile picture
+    //  kCLYUserPicturePath - (String) providing local path to user's avatar or profile picture
+    //  kCLYUserGender - (String) User's gender as M for male and F for female
+    //  kCLYUserBirthYear - (Integer) User's year of birth as integer
+    //  kCLYUserCustom - (Dictionary) User custom dat - NSDictionary with your key values
+    
+    // set userDataArgs as args passed
+    NSDictionary * userDataArgs = [args objectAtIndex:0];
+    
+    // get userData and customUserData from userDataArgs
+    NSDictionary * userData = [userDataArgs objectForKey:@"userData"];
+    NSDictionary* customUserData = [userDataArgs objectForKey:@"customUserData"];
+    
+    // get params out of userData
+    NSString* name = [TiUtils stringValue:[userData objectForKey:@"name"]];
+    NSString* username = [TiUtils stringValue:[userData objectForKey:@"username"]];
+    NSString* email = [TiUtils stringValue:[userData objectForKey:@"email"]];
+    NSString* organization = [TiUtils stringValue:[userData objectForKey:@"organization"]];
+    NSString* phone = [TiUtils stringValue:[userData objectForKey:@"phone"]];
+    NSString* picture = [TiUtils stringValue:[userData objectForKey:@"picture"]];
+    NSString* picturePath = [TiUtils stringValue:[userData objectForKey:@"picturePath"]];
+    NSString* gender = [TiUtils stringValue:[userData objectForKey:@"gender"]];
+    NSString* birthyear = [TiUtils stringValue:[userData objectForKey:@"byear"]];
+    
+    // set userDetails
+    NSMutableDictionary* userDetails = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    // START - CHECK if params set and add to userDetails
+    if(name){
+        [userDetails setObject:name forKey:kCLYUserName];
+    }
+    if(username){
+        [userDetails setObject:username forKey:kCLYUserUsername];
+    }
+    if(email){
+        [userDetails setObject:email forKey:kCLYUserEmail];
+    }
+    if(organization){
+        [userDetails setObject:organization forKey:kCLYUserOrganization];
+    }
+    if(phone){
+        [userDetails setObject:phone forKey:kCLYUserPhone];
+    }
+    if(gender){
+        [userDetails setObject:gender forKey:kCLYUserGender];
+    }
+    if(picture){
+        [userDetails setObject:picture forKey:kCLYUserPicture];
+    }
+    if(picturePath){
+        [userDetails setObject:picturePath forKey:kCLYUserPicturePath];
+    }
+    if(birthyear){
+        [userDetails setObject:birthyear forKey:kCLYUserBirthYear];
+    }
+    if(customUserData){
+        [userDetails setObject:customUserData forKey:kCLYUserCustom];
+    }
+    // END - CHECK if params set and add to userDetails
+    
+    NSLog(@"[INFO] %@ userDetails",userDetails);
+    
+    // run recordUserDetails function with userDetails
+    [Countly.sharedInstance recordUserDetails: userDetails];
+    
+}
 - (id)device
 {
     size_t size;
